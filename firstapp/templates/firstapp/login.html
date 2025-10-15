@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Name</title>
+</head>
+<body>
+  {% for book in book_list%}
+
+  <li>THis is my first book---{{book.name}} and it author --- {{ book.author}} </li>
+   <li> PRICe ----- $   {{book.price}}  </li>
+    <a href=""> <li>Date-- of--publish  </li>{{book.published_date}}</a>
+    {% empty %}
+    <li>NO book found </li>
+                      
+  
+  {% endfor %}
+</body>
+</html>

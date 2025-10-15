@@ -1,0 +1,16 @@
+3️⃣ When a user visits /login/
+
+Django receives the HTTP request for /login/.
+Django calls the function mapped in urls.py, which is now wrapper(request) (because of the decorator).
+Inside wrapper:
+if CustomUser.objects.count() == 0:
+    messages.info(request, "Please register before logging in.")
+    return redirect('register')
+
+Checks if any users exist in the database.
+If no users, the user is immediately redirected to the register page.
+The original login_view is never called in this case.
+If users exist:
+return view_func(request, *args, **kwargs)
+Calls your original login_view with all the request arguments.
+Now the login logic (form validation, authentication, etc.) runs normally.
