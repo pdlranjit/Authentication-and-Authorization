@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .models import CustomUser
 from .forms import CustomUserForm,LoginForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login,logout
 from django.contrib import messages
 from .decorators import must_register_before_login
 
@@ -31,7 +31,7 @@ def login_view(request):
 
                 if user is not None:
                     login(request, user)
-                    return redirect('home')
+                    return render(request,'authentication/success.html')
                 else:
                     messages.error(request, 'Invalid email or password.')
 
@@ -43,8 +43,11 @@ def login_view(request):
     
     return render(request, 'authentication/login.html', {'form': form})
 
-def home(request):
-    return HttpResponse('Login and register form done successfully')
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('register')
 
    
    
