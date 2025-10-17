@@ -11,7 +11,7 @@ def register_view(request):
         form= CustomUserForm(request.POST)
         if form.is_valid(): #is saves  user in Databse with cystomfields
          form.save()
-         return redirect('login')
+         return redirect('register')
     else:
        form=CustomUserForm()
     return render(request,'authentication/register.html',{'form':form})
