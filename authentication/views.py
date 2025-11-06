@@ -5,13 +5,25 @@ from .forms import CustomUserForm,LoginForm
 from django.contrib.auth import authenticate, login,logout
 from django.contrib import messages
 from .decorators import must_register_before_login
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .serializers import RegisterSerializer
+from rest_framework import status
 
+# @api_view(['POST'])
+# def register_view(request):
+#     serializer = RegisterSerializer(data=request.data)
+#     if serializer.is_valid():
+#         serializer.save()
+#         return Response({"message": "User registered successfully!"}, status=status.HTTP_201_CREATED)
+#     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 def register_view(request):
     if request.method== "POST":
+        
         form= CustomUserForm(request.POST)
         if form.is_valid(): #is saves  user in Databse with cystomfields
          form.save()
-         return redirect('register')
+         return redirect('login')
     else:
        form=CustomUserForm()
     return render(request,'authentication/register.html',{'form':form})

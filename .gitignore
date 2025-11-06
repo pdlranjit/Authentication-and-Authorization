@@ -1,0 +1,22 @@
+__pycache__/
+*.pyo
+*.pyc
+
+venv/
+
+Firstproject/authentication/migrations
+
+db.sqlite3
+
+.vscode/
+
+# Environment variables
+*.env
+.env
+.env.*
+
+# Static and media files
+/static/
+/media/
+
+*.log
